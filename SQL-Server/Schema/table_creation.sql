@@ -1,3 +1,4 @@
+USE Warehouse;
 -- Creates Estado and its structure
 CREATE TABLE Estado
 (
