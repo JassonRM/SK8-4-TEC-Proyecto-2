@@ -14,7 +14,6 @@ DECLARE
     @ArchivoXML XML = '<?xml version="1.0"?>
  <Resultados>
    <ListaCamiones>
-     <IdCamion>21</IdCamion>
      <Placa>234AMY</Placa>
      <Marca>Hyundai</Marca>
      <IdEstado>1</IdEstado>
