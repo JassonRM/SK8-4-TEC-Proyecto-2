@@ -19,3 +19,4 @@ BEGIN TRAN
     CLOSE sku_cursor;
     DEALLOCATE sku_cursor;
 ROLLBACK
+

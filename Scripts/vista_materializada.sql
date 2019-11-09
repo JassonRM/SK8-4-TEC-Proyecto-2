@@ -1,3 +1,4 @@
+-- Creacion de la vista
 CREATE VIEW MayoresVentas
     WITH SCHEMABINDING
 AS
@@ -19,6 +20,7 @@ FROM dbo.Factura F
          INNER JOIN dbo.Categoria C2 on S.IdCategoria = C2.IdCategoria
 WHERE F.Subtotal + F.Impuestos > 200000;
 
+-- Crea el indice para convertirla en materializada
 CREATE UNIQUE CLUSTERED INDEX
     IdxIdArticulo
     ON dbo.MayoresVentas (IdArticulo);

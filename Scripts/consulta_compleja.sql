@@ -1,3 +1,4 @@
+-- Calculo de porcentaje
 CREATE FUNCTION PerdidaBanco(@MetodoPago INT, @Costo INT) RETURNS FLOAT AS
 BEGIN
     DECLARE @Porcentaje FLOAT;
@@ -11,13 +12,13 @@ BEGIN
 
 END;
 
-
+-- Calculo de edad
 CREATE FUNCTION CalcularEdad(@FechaNacimiento DATE) RETURNS INT AS
 BEGIN
     RETURN YEAR(GETDATE()) - YEAR(@FechaNacimiento);
 END;
 
-
+-- Busqueda sin optimizar
 SELECT TOP 1 CONCAT(PC.Nombre, ' ', PC.Apellido1, ' ', PC.Apellido2) AS Ganador,
        dbo.CalcularEdad(PC.FechaNacimiento)                    AS Edad,
        P3.Nombre                                               AS Pais
@@ -41,7 +42,7 @@ FROM Cliente C
 		 ORDER BY PrecioFinal DESC;
 
 
-
+-- Busqueda Optimizada
 SELECT CONCAT(PC.Nombre, ' ', PC.Apellido1, ' ', PC.Apellido2) AS Ganador,
        dbo.CalcularEdad(PC.FechaNacimiento)                    AS Edad,
        P3.Nombre                                               AS Pais

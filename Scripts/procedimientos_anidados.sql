@@ -1,3 +1,4 @@
+-- Modifica cliente y ejecuta actualizar persona
 CREATE PROCEDURE ActualizarCliente(@IdCliente INT, @Puntos INT, @Descripcion VARCHAR(100), @IdPersona INT,
                                    @Telefono VARCHAR(40), @IdDireccion INT, @IdDistrito INT, @Detalle VARCHAR(100)) AS
 BEGIN TRY
@@ -10,10 +11,11 @@ BEGIN TRY
     COMMIT TRANSACTION;
 END TRY
 BEGIN CATCH
+    PRINT 'ERROR: ROLLBACK Actualizar Cliente'
     ROLLBACK TRANSACTION;
 END CATCH;
 
-
+-- Modifica Persona y ejecuta actualizar Direccion
 CREATE PROCEDURE ActualizarPersona(@IdPersona INT, @Telefono VARCHAR(40), @Correo VARCHAR(100), @IdDireccion INT,
                                    @IdDistrito INT,
                                    @Detalle VARCHAR(100)) AS
@@ -26,10 +28,10 @@ BEGIN TRY
     COMMIT TRANSACTION;
 END TRY
 BEGIN CATCH
-
+    PRINT 'ERROR: ROLLBACK Actualizar Persona'
 END CATCH;
 
-
+-- Modifica Direccion
 CREATE PROCEDURE ActualizarDireccion(@IdDireccion INT, @IdDistrito INT, @Detalle VARCHAR(100)) AS
 BEGIN TRY
     BEGIN TRANSACTION;
@@ -39,11 +41,11 @@ BEGIN TRY
     COMMIT TRANSACTION;
 END TRY
 BEGIN CATCH
-
+    PRINT 'ERROR: ROLLBACK Actualizar Direccion'
 END CATCH;
 
 
--- EXEC ActualizarCliente 1, 100, 'Buen Cliente', 1, '121-776-223', 1, 1, '300 mts sur del TEC'
+EXEC ActualizarCliente 1, 100, 'Buen Cliente', 1, '121-776-223', 1, 1, '300 mts sur del TEC'
 -- DROP PROCEDURE ActualizarDireccion;
 -- DROP PROCEDURE ActualizarPersona;
 -- DROP PROCEDURE ActualizarCliente;

@@ -1,13 +1,16 @@
+-- Cargar valores de xml a tabla camion
+
 CREATE PROCEDURE CargarXML(@Entrada XML) AS
 BEGIN
-
+    BEGIN TRANSACTION
     INSERT Camion(Placa, Marca, IdEstado)
     SELECT Resultados.ListaCamiones.value('Placa[1]', 'VARCHAR(40)') AS Placa,
            Resultados.ListaCamiones.value('Marca[1]', 'VARCHAR(40)') AS Marca,
            Resultados.ListaCamiones.value('IdEstado[1]', 'INT')      AS IdEstado
 
     FROM @Entrada.nodes('Resultados/ListaCamiones') Resultados(ListaCamiones)
-END;
+    END;
+
 
 
 DECLARE
