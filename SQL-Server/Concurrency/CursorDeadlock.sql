@@ -1,8 +1,9 @@
 BEGIN TRAN
+    PRINT 'Creating ascending cursor'
     DECLARE sku_cursor CURSOR
         FOR SELECT *
             FROM SKU
-            WHERE IdSKU < 5
+            WHERE IdSKU < 6
             ORDER BY IdSKU ASC;
 
     OPEN sku_cursor;
@@ -10,6 +11,7 @@ BEGIN TRAN
 
     WHILE @@FETCH_STATUS = 0
         BEGIN
+            PRINT 'Getting next ascending item'
             UPDATE SKU
             SET IdEstado = 2;
             FETCH FROM sku_cursor;
